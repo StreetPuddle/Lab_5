@@ -12,14 +12,14 @@ struct arrow_class
 #define MAXSPEED 3
 
 void create_arrow_bitmap(ALLEGRO_BITMAP * arrow_bmp[], ALLEGRO_DISPLAY *display);
-/*
+
 void erase_arrow();
 void move_arrow();
 void up();
 void down();
 void right();
 void left();
-*/
+
 
 int main(void)
 {
@@ -69,9 +69,8 @@ int main(void)
 				break;
 			}
 		}
-
-
 		al_draw_bitmap(arrow_bmp[0], width / 2, 100, 0);
+		al_draw_bitmap(arrow_bmp[1], width / 2, 200, 0);
 		al_draw_bitmap(arrow_bmp[2], width / 2, 300, 0);
 		al_draw_bitmap(arrow_bmp[3], width / 2, 400, 0);
 		al_flip_display();
@@ -89,10 +88,10 @@ int main(void)
 
 void create_arrow_bitmap(ALLEGRO_BITMAP * arrow_bmp[],ALLEGRO_DISPLAY *display)
 {
-	for(int i=0;i<4; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		arrow_bmp[i]=al_create_bitmap(64,64);   
-		if(!arrow_bmp[i]) {
+		arrow_bmp[i] = al_create_bitmap(64, 64);
+		if (!arrow_bmp[i]) {
 			exit(1);
 			al_destroy_display(display);
 
@@ -103,15 +102,30 @@ void create_arrow_bitmap(ALLEGRO_BITMAP * arrow_bmp[],ALLEGRO_DISPLAY *display)
 
 		int x = 0, y = 0;
 
-		al_draw_line(x + 16, y + 6, x + 32, y + 6, al_map_rgb(140, 140, 140), 4);
-		al_draw_line(x + 16, y + 14, x + 38, y + 14, al_map_rgb(140, 140, 140), 4);
-		al_draw_line(x + 16, y + 50, x + 38, y + 50, al_map_rgb(130, 130, 130), 4);
-		al_draw_line(x + 16, y + 58, x + 32, y + 58, al_map_rgb(130, 130, 130), 4);
-		al_draw_filled_triangle(x + 16, y, x + 40, y + 32, x + 16, y + 64, al_map_rgb(150, 150, 150));
-		al_draw_filled_rectangle(x + 16, y, x + 8, y + 64, al_map_rgb(150, 150, 150));
-		al_draw_filled_triangle(x, y + 18, x + 32, y + 32, x, y + 46, al_map_rgb(150, 150, 150));
-		al_draw_filled_ellipse(x + 32, y + 32, x + 32, y + 9, al_map_rgb(160, 160, 160));
-		al_draw_filled_ellipse(x + 48, y + 32, 8, 4, al_map_rgb(150, 150, 250));
+		switch (i) {
+		case 0:
+			al_draw_line(x + 6, y + 48, x + 6, y + 32, al_map_rgb(140, 140, 140), 4);
+			al_draw_line(x + 14, y + 50, x + 14, y + 26, al_map_rgb(140, 140, 140), 4);
+			al_draw_line(x + 50, y + 48, x + 50, y + 26, al_map_rgb(130, 130, 130), 4);
+			al_draw_line(x + 58, y + 50, x + 58, y + 32, al_map_rgb(130, 130, 130), 4);
+			al_draw_filled_triangle(x, y + 48, x + 32, y + 24, x + 64, y + 48, al_map_rgb(150, 150, 150));
+			al_draw_filled_rectangle(x, y + 48, x + 64, y + 56, al_map_rgb(150, 150, 150));
+			al_draw_filled_triangle(x + 18, y + 64, x + 32, y + 32, x + 48, y + 64, al_map_rgb(150, 150, 150));
+			al_draw_filled_ellipse(x + 32, y + 32, x + 9, y + 32, al_map_rgb(160, 160, 160));
+			al_draw_filled_ellipse(x + 32, y + 16, x + 4, y + 8, al_map_rgb(150, 150, 250));
+			break;
+		case 1:
+			al_draw_line(x + 16, y + 6, x + 32, y + 6, al_map_rgb(140, 140, 140), 4);
+			al_draw_line(x + 16, y + 14, x + 38, y + 14, al_map_rgb(140, 140, 140), 4);
+			al_draw_line(x + 16, y + 50, x + 38, y + 50, al_map_rgb(130, 130, 130), 4);
+			al_draw_line(x + 16, y + 58, x + 32, y + 58, al_map_rgb(130, 130, 130), 4);
+			al_draw_filled_triangle(x + 16, y, x + 40, y + 32, x + 16, y + 64, al_map_rgb(150, 150, 150));
+			al_draw_filled_rectangle(x + 16, y, x + 8, y + 64, al_map_rgb(150, 150, 150));
+			al_draw_filled_triangle(x, y + 18, x + 32, y + 32, x, y + 46, al_map_rgb(150, 150, 150));
+			al_draw_filled_ellipse(x + 32, y + 32, x + 32, y + 9, al_map_rgb(160, 160, 160));
+			al_draw_filled_ellipse(x + 48, y + 32, x + 8, y + 4, al_map_rgb(150, 150, 250));
+			break;
+		}
 	}
 }
 
